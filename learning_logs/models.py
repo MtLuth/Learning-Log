@@ -7,3 +7,14 @@ class Topic(models.Model):
 
     def __str__(self):
         return self.text
+    
+class Entry(models.Model):
+    topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
+    text = models.TextField()
+    date_added = models.DateTimeField(auto_now_add=True)
+
+class Meta(models.Model):
+    verbose_naine_plurals = 'entries'
+
+    def __str__(self):
+        return f"{self.text[:50]}..."
